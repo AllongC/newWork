@@ -18,18 +18,19 @@ export default {
       flag: true
     };
   },
-  props: ["type", "InputText", "errMsg"],
+  props: ["type", "InputText", "errMsg", "rule"],
   methods: {
     leaved() {
       if (!this.flag) {
-        console.log(this.errMsg);
+        this.$toast.fail(this.errMsg);
+        return;
       }
       this.$emit("sendData", this.EditVal);
     }
   },
   watch: {
     EditVal(newVal) {
-      this.flag = new RegExp(/^\d{3,6}$/).test(newVal);
+      this.flag = new RegExp(this.rule).test(newVal);
     }
   }
 };

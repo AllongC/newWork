@@ -8,6 +8,7 @@
       rule="^\d{3,6}$"
       @sendData="setUsername"
     />
+    <InputSec type="text" InputText="昵称" errMsg="昵称格式不正确" rule="^\w{3,6}$" @sendData="setNickname" />
     <InputSec
       type="password"
       InputText="密码"
@@ -15,7 +16,7 @@
       rule="^\d{3,6}$"
       @sendData="setPassword"
     />
-    <LoginSec BtnInfo="登录" @send="accept" />
+    <LoginSec BtnInfo="注册" @send="accept" />
   </div>
 </template>
 
@@ -27,6 +28,7 @@ export default {
   data() {
     return {
       username: "",
+      nickname: "",
       password: ""
     };
   },
@@ -34,11 +36,17 @@ export default {
     setUsername(newVal) {
       this.username = newVal;
     },
+    setNickname(newVal) {
+      this.nickname = newVal;
+    },
     setPassword(newVal) {
       this.password = newVal;
     },
     accept() {
-      console.log("父组件触发" + this.password + this.username);
+      console.log(this.username);
+      console.log(this.nickname);
+      console.log(this.password);
+      console.log("父组件触发...");
     }
   },
   components: {
