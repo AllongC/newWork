@@ -1,6 +1,12 @@
 <template>
   <div class="InputSec">
-    <input :type="type" :placeholder="InputText" v-model="EditVal" :class="{error:!flag}" />
+    <input
+      :type="type"
+      :placeholder="InputText"
+      v-model="EditVal"
+      :class="{error:!flag}"
+      @blur="leaved"
+    />
   </div>
 </template>
 
@@ -13,12 +19,16 @@ export default {
     };
   },
   props: ["type", "InputText", "errMsg"],
-  watch: {
-    EditVal(newVal) {
-      this.flag = new RegExp(/^\d{3,6}$/).test(newVal);
+  methods: {
+    leaved() {
       if (!this.flag) {
         console.log(this.errMsg);
       }
+    }
+  },
+  watch: {
+    EditVal(newVal) {
+      this.flag = new RegExp(/^\d{3,6}$/).test(newVal);
     }
   }
 };
