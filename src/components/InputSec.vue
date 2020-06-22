@@ -1,6 +1,6 @@
 <template>
   <div class="InputSec">
-    <input :type="type" :placeholder="InputText" v-model="EditVal" />
+    <input :type="type" :placeholder="InputText" v-model="EditVal" :class="{error:!flag}" />
   </div>
 </template>
 
@@ -15,9 +15,8 @@ export default {
   props: ["type", "InputText", "errMsg"],
   watch: {
     EditVal(newVal) {
-      const flag = new RegExp(/^\d{3,6}$/).test(newVal);
-      if (!flag) {
-        this.flag = flag;
+      this.flag = new RegExp(/^\d{3,6}$/).test(newVal);
+      if (!this.flag) {
         console.log(this.errMsg);
       }
     }
@@ -35,6 +34,9 @@ export default {
     border-bottom: 1px solid black;
     outline: none;
     font-size: 5vw;
+  }
+  .error {
+    border-bottom-color: #d81e06;
   }
 }
 </style>
