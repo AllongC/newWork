@@ -24,6 +24,7 @@ export default {
       if (!this.flag) {
         console.log(this.errMsg);
       }
+      this.$emit("sendData", this.EditVal);
     }
   },
   watch: {

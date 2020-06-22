@@ -6,19 +6,36 @@
     <div class="LogoSec">
       <span class="iconfont iconnew"></span>
     </div>
-    <InputSec type="text" InputText="用户名/手机号码" errMsg="手机号码格式不正确" />
-    <InputSec type="password" InputText="密码" errMsg="密码格式不正确" />
-    <div class="LoginSec">
-      <button>登录</button>
-    </div>
+    <InputSec type="text" InputText="用户名/手机号码" errMsg="手机号码格式不正确" @sendData="setUsername" />
+    <InputSec type="password" InputText="密码" errMsg="密码格式不正确" @sendData="setPassword" />
+    <LoginSec BtnInfo="登录" @send="accept" />
   </div>
 </template>
 
 <script>
 import InputSec from "@/components/InputSec";
+import LoginSec from "@/components/LoginSec";
 export default {
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
+  },
+  methods: {
+    setUsername(newVal) {
+      this.username = newVal;
+    },
+    setPassword(newVal) {
+      this.password = newVal;
+    },
+    accept() {
+      console.log("父组件触发" + this.password + this.username);
+    }
+  },
   components: {
-    InputSec
+    InputSec,
+    LoginSec
   }
 };
 </script>
@@ -35,21 +52,6 @@ export default {
   .iconnew {
     font-size: 33.333vw;
     color: #d81e06;
-  }
-}
-.LoginSec {
-  margin-top: 16.667vw;
-  padding: 0vw 5.556vw 0vw 5.556vw;
-  button {
-    width: 100%;
-    height: 16.667vw;
-    border: none;
-    background-color: #d81e06;
-    text-align: center;
-    color: white;
-    font-size: 5vw;
-    outline: none;
-    border-radius: 8.333vw;
   }
 }
 </style>
