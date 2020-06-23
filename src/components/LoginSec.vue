@@ -9,7 +9,6 @@ export default {
   props: ["BtnInfo"],
   methods: {
     tigger() {
-      console.log("子组件触发");
       this.$emit("send");
     }
   }

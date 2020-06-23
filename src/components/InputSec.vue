@@ -21,11 +21,11 @@ export default {
   props: ["type", "InputText", "errMsg", "rule"],
   methods: {
     leaved() {
+      this.$emit("sendData", this.EditVal);
       if (!this.flag) {
         this.$toast.fail(this.errMsg);
         return;
       }
-      this.$emit("sendData", this.EditVal);
     }
   },
   watch: {
