@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
+import Center from '@/views/personal/Center'
 Vue.use(VueRouter)
 
 const routes = [
@@ -21,6 +22,11 @@ const routes = [
     name: 'Register',
     component: Register
   },
+  {
+    path: '/center',
+    name: 'Center',
+    component: Center
+  }
 ]
 
 const router = new VueRouter({
