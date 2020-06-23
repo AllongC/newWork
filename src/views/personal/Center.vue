@@ -1,12 +1,15 @@
 <template>
   <div>
-    <div class="userSec">
-      <img src="@/assets/logo.jpg" alt />
+    <div class="userSec" v-if="dataObj">
+      <img v-if="dataObj.head_img" :src="'http://127.0.0.1:3000'+dataObj.head_img" alt />
+      <img v-else src="@/assets/logo.jpg" alt />
       <div class="InfoSec">
         <p>
-          <span class="iconfont iconxingbienan"></span>火星网页
+          <span v-if="dataObj.gender==1" class="iconfont iconxingbienan"></span>
+          <span v-else class="iconfont iconxingbienv"></span>
+          {{dataObj.nickname}}
         </p>
-        <p class="createDate">2019-10-10</p>
+        <p class="createDate">{{dataObj.create_date.split('T')[0]}}</p>
       </div>
       <p class="arrowsSec">
         <span class="iconfont iconjiantou1"></span>
@@ -22,6 +25,25 @@
 <script>
 import UserList from "@/components/UserList";
 export default {
+  data() {
+    return {
+      dataObj: null
+    };
+  },
+  mounted() {
+    this.$axios({
+      url: "http://127.0.0.1:3000/user/" + localStorage.getItem("userId"),
+      method: "get",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token")
+      }
+    }).then(res => {
+      const { message, data } = res.data;
+      if (message == "获取成功") {
+        this.dataObj = data;
+      }
+    });
+  },
   methods: {
     direction(MyFocus) {
       console.log(MyFocus);
