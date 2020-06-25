@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="userSec" v-if="dataObj">
-      <img v-if="dataObj.head_img" :src="'http://127.0.0.1:3000'+dataObj.head_img" alt />
+      <img v-if="dataObj.head_img" :src="$axios.defaults.baseURL+dataObj.head_img" alt />
       <img v-else src="@/assets/logo.jpg" alt />
       <div class="InfoSec">
         <p>
@@ -33,7 +33,7 @@ export default {
   },
   mounted() {
     this.$axios({
-      url: "http://127.0.0.1:3000/user/" + localStorage.getItem("userId"),
+      url: "/user/" + localStorage.getItem("userId"),
       method: "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token")

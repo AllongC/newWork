@@ -6,6 +6,7 @@ import axios from 'axios'
 import 'vant/lib/index.css';
 import { Toast } from 'vant'
 Vue.use(Vant);
+axios.defaults.baseURL = 'http://127.0.0.1:3000'
 axios.interceptors.response.use(res => {
   const { statusCode, message } = res.data
   if (statusCode && statusCode == 401) {
