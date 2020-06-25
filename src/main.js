@@ -20,7 +20,7 @@ axios.interceptors.response.use(res => {
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 router.beforeEach((to, from, next) => {
-  if (to.name == 'Center') {
+  if (to.meta.auth) {
     if (localStorage.getItem('token') && localStorage.getItem('userId')) {
       return next()
     } else {

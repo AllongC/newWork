@@ -26,12 +26,18 @@ const routes = [
   {
     path: '/center',
     name: 'Center',
-    component: Center
+    component: Center,
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/edit',
     name: 'Edit',
-    component: Edit
+    component: Edit,
+    meta: {
+      auth: true
+    }
   }
 ]
 

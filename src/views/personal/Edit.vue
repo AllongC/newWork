@@ -1,12 +1,13 @@
 <template>
-  <div>
+  <div v-if="data">
     <topSec val="编辑资料" />
     <div class="imgSec">
-      <img src="@/assets/logo.jpg" alt />
+      <img v-if="data.head_img" :src="$axios.defaults.baseURL+ data.head_img" alt />
+      <img v-else src="@/assets/logo.jpg" alt />
     </div>
-    <UserList MyFocus="昵称" FocusInfo="火星网页" />
+    <UserList MyFocus="昵称" :FocusInfo="data.nickname" />
     <UserList MyFocus="密码" FocusInfo="******" />
-    <UserList MyFocus="性别" FocusInfo="男" />
+    <UserList MyFocus="性别" :FocusInfo="data.gender==1?'男':'女'" />
   </div>
 </template>
 
@@ -14,6 +15,25 @@
 import UserList from "@/components/UserList";
 import topSec from "@/components/topSec";
 export default {
+  data() {
+    return {
+      data: null
+    };
+  },
+  created() {
+    this.$axios({
+      url: "/user/" + localStorage.getItem("userId"),
+      method: "get",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token")
+      }
+    }).then(res => {
+      const { message, data } = res.data;
+      if (message == "获取成功") {
+        this.data = data;
+      }
+    });
+  },
   components: {
     UserList,
     topSec
