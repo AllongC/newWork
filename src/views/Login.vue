@@ -67,6 +67,9 @@ export default {
           localStorage.setItem("token", data.token);
           localStorage.setItem("userId", data.user.id);
           this.$toast.success(message);
+          setTimeout(() => {
+            this.$router.push("/center");
+          }, 500);
         } else {
           this.$toast.fail(message);
         }

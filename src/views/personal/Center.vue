@@ -19,6 +19,7 @@
     <UserList MyFocus="我的跟帖" FocusInfo="跟帖/回复" @ToDirection="direction('MyPost')" />
     <UserList MyFocus="我的收藏" FocusInfo="文章/视频" @ToDirection="direction('MyCollect')" />
     <UserList MyFocus="设置" FocusInfo @ToDirection="direction('MySet')" />
+    <UserList MyFocus="退出" FocusInfo @ToDirection="direction('quit')" />
   </div>
 </template>
 
@@ -46,7 +47,11 @@ export default {
   },
   methods: {
     direction(MyFocus) {
-      console.log(MyFocus);
+      if (MyFocus == "quit") {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        this.$router.replace("/login");
+      }
     }
   },
   components: {
