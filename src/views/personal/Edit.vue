@@ -6,10 +6,14 @@
       <img v-else src="@/assets/logo.jpg" alt />
     </div>
     <UserList MyFocus="昵称" :FocusInfo="data.nickname" @ToDirection="nicknameShow = true" />
-    <UserList MyFocus="密码" FocusInfo="******" />
+    <UserList MyFocus="密码" FocusInfo="******" @ToDirection="pwdShow = true" />
     <UserList MyFocus="性别" :FocusInfo="data.gender==1?'男':'女'" />
     <van-dialog v-model="nicknameShow" title="修改昵称" show-cancel-button @confirm="editNickname">
       <van-field v-model="nicknameVal" label="新昵称" placeholder="请输入新的昵称" />
+    </van-dialog>
+    <van-dialog v-model="pwdShow" title="修改密码" show-cancel-button @confirm="editPwd">
+      <van-field v-model="oldPwdVal" label="旧密码" placeholder="请输入旧的密码" />
+      <van-field v-model="newPwdVal" label="新密码" placeholder="请输入新的密码" />
     </van-dialog>
   </div>
 </template>
@@ -22,7 +26,11 @@ export default {
     return {
       data: null,
       nicknameShow: false,
-      nicknameVal: ""
+      pwdShow: false,
+      nicknameVal: "",
+      conPwdVal: "",
+      oldPwdVal: "",
+      newPwdVal: ""
     };
   },
   methods: {
@@ -37,6 +45,7 @@ export default {
         const { message, data } = res.data;
         if (message == "获取成功") {
           this.data = data;
+          this.conPwdVal = data.password;
         }
       });
     },
@@ -62,6 +71,23 @@ export default {
       }
       this.editEvery({ nickname: this.nicknameVal });
       this.nicknameVal = "";
+    },
+    editPwd() {
+      if (this.oldPwdVal !== this.conPwdVal) {
+        this.$toast.fail("输入的旧密码不正确");
+        this.oldPwdVal = "";
+        this.newPwdVal = "";
+        return;
+      }
+      if (!this.newPwdVal) {
+        this.oldPwdVal = "";
+        this.newPwdVal = "";
+        this.$toast.fail("输入的密码不能为空");
+        return;
+      }
+      this.editEvery({ password: this.newPwdVal });
+      this.oldPwdVal = "";
+      this.newPwdVal = "";
     }
   },
   created() {
