@@ -4,6 +4,7 @@
     <div class="imgSec">
       <img v-if="data.head_img" :src="$axios.defaults.baseURL+ data.head_img" alt />
       <img v-else src="@/assets/logo.jpg" alt />
+      <van-uploader :after-read="afterRead" />
     </div>
     <UserList MyFocus="昵称" :FocusInfo="data.nickname" @ToDirection="nicknameShow = true" />
     <UserList MyFocus="密码" FocusInfo="******" @ToDirection="pwdShow = true" />
@@ -109,6 +110,23 @@ export default {
     },
     setGender(item) {
       this.editEvery({ gender: item.gender });
+    },
+    afterRead(fileObj) {
+      const data = new FormData();
+      data.append("file", fileObj.file);
+      this.$axios({
+        url: "/upload",
+        method: "post",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        },
+        data: data
+      }).then(res => {
+        const { message, data } = res.data;
+        if (message == "文件上传成功") {
+          this.editEvery({ head_img: data.url });
+        }
+      });
     }
   },
   created() {
@@ -123,14 +141,19 @@ export default {
 
 <style lang="less" scoped>
 .imgSec {
+  position: relative;
   height: 38.889vw;
   display: flex;
   justify-content: center;
   align-items: center;
   img {
+    position: absolute;
     width: 19.444vw;
     height: 19.444vw;
     border-radius: 50%;
+  }
+  .van-uploader {
+    opacity: 0;
   }
 }
 </style>
