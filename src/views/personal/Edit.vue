@@ -7,7 +7,7 @@
     </div>
     <UserList MyFocus="昵称" :FocusInfo="data.nickname" @ToDirection="nicknameShow = true" />
     <UserList MyFocus="密码" FocusInfo="******" @ToDirection="pwdShow = true" />
-    <UserList MyFocus="性别" :FocusInfo="data.gender==1?'男':'女'" />
+    <UserList MyFocus="性别" :FocusInfo="data.gender==1?'男':'女'" @ToDirection="genderShow = true" />
     <van-dialog v-model="nicknameShow" title="修改昵称" show-cancel-button @confirm="editNickname">
       <van-field v-model="nicknameVal" label="新昵称" placeholder="请输入新的昵称" />
     </van-dialog>
@@ -15,6 +15,13 @@
       <van-field v-model="oldPwdVal" label="旧密码" placeholder="请输入旧的密码" />
       <van-field v-model="newPwdVal" label="新密码" placeholder="请输入新的密码" />
     </van-dialog>
+    <van-action-sheet
+      v-model="genderShow"
+      :actions="genders"
+      cancel-text="取消"
+      close-on-click-action
+      @select="setGender"
+    />
   </div>
 </template>
 
@@ -27,10 +34,21 @@ export default {
       data: null,
       nicknameShow: false,
       pwdShow: false,
+      genderShow: false,
       nicknameVal: "",
       conPwdVal: "",
       oldPwdVal: "",
-      newPwdVal: ""
+      newPwdVal: "",
+      genders: [
+        {
+          name: "男",
+          gender: 1
+        },
+        {
+          name: "女",
+          gender: 0
+        }
+      ]
     };
   },
   methods: {
@@ -88,6 +106,9 @@ export default {
       this.editEvery({ password: this.newPwdVal });
       this.oldPwdVal = "";
       this.newPwdVal = "";
+    },
+    setGender(item) {
+      this.editEvery({ gender: item.gender });
     }
   },
   created() {
