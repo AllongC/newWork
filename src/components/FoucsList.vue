@@ -27,36 +27,36 @@ export default {
 
 <style lang="less" scoped>
 .FocusList {
-  padding: 0px 14px;
+  padding: 0vw 3.889vw;
   display: flex;
-  height: 110px;
+  height: 30.556vw;
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid #e4e4e4;
   img {
-    width: 40px;
-    height: 40px;
+    width: 11.111vw;
+    height: 11.111vw;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 2.778vw;
   }
   .ListInfo {
     flex: 1;
     .bloke {
-      margin-top: 6px;
-      font-size: 14px;
+      margin-top: 1.667vw;
+      font-size: 3.889vw;
       color: #888;
     }
     .title {
-      font-size: 16px;
+      font-size: 4.444vw;
       color: #333;
     }
   }
   button {
-    width: 70px;
-    height: 30px;
+    width: 19.444vw;
+    height: 8.333vw;
     border: none;
-    font-size: 12px;
-    border-radius: 15px;
+    font-size: 3.333vw;
+    border-radius: 4.167vw;
     color: #888;
   }
   .redBtn {
