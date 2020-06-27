@@ -5,6 +5,7 @@ import Login from '@/views/Login'
 import Register from '@/views/Register'
 import Center from '@/views/personal/Center'
 import Edit from '@/views/personal/Edit'
+import Focus from '@/views/personal/Focus'
 Vue.use(VueRouter)
 
 const routes = [
@@ -35,6 +36,14 @@ const routes = [
     path: '/edit',
     name: 'Edit',
     component: Edit,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/focus',
+    name: 'Focus',
+    component: Focus,
     meta: {
       auth: true
     }
