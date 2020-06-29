@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 import Home from '../views/Home.vue'
+
 import Login from '@/views/Login'
 import Register from '@/views/Register'
+
 import Center from '@/views/personal/Center'
 import Edit from '@/views/personal/Edit'
+import Focus from '@/views/personal/Focus'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,6 +18,7 @@ const routes = [
     name: 'Home',
     component: Home
   },
+
   {
     path: '/login',
     name: 'Login',
@@ -23,6 +29,8 @@ const routes = [
     name: 'Register',
     component: Register
   },
+
+
   {
     path: '/center',
     name: 'Center',
@@ -38,7 +46,18 @@ const routes = [
     meta: {
       auth: true
     }
+  },
+  {
+    path: '/focus',
+    name: 'Focus',
+    component: Focus,
+    meta: {
+      auth: true
+    }
   }
+
+
+
 ]
 
 const router = new VueRouter({
