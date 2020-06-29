@@ -9,6 +9,9 @@ import Register from '@/views/Register'
 import Center from '@/views/personal/Center'
 import Edit from '@/views/personal/Edit'
 import Focus from '@/views/personal/Focus'
+
+import Test from '@/views/personal/Test'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -53,8 +56,14 @@ const routes = [
     meta: {
       auth: true
     }
-  }
+  },
 
+
+  {
+    path: '/test',
+    name: 'Test',
+    component: Test,
+  }
 
 
 ]
