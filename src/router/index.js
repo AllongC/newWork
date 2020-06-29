@@ -9,7 +9,6 @@ import Register from '@/views/Register'
 import Center from '@/views/personal/Center'
 import Edit from '@/views/personal/Edit'
 import Focus from '@/views/personal/Focus'
-
 Vue.use(VueRouter)
 
 const routes = [
