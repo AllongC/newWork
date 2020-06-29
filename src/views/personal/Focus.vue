@@ -40,14 +40,16 @@ export default {
       this.$axios({
         url: "/user_unfollow/" + id
       }).then(res => {
-        console.log(res);
+        const { message } = res.data;
+        console.log(message);
       });
     },
     follow(id) {
       this.$axios({
         url: "/user_follows/" + id
       }).then(res => {
-        console.log(res);
+        const { message } = res.data;
+        console.log(message);
       });
     },
     unFocus(id, index) {
@@ -67,45 +69,45 @@ export default {
 
 <style lang="less" scoped>
 .focusList {
-  padding: 0px 20px;
+  padding: 0vw 5.556vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  height: 27.778vw;
   border-bottom: 1px solid #e5e5e5;
   img {
-    width: 40px;
-    height: 40px;
+    width: 11.111vw;
+    height: 11.111vw;
     object-fit: cover;
     border-radius: 50%;
-    margin-right: 15px;
+    margin-right: 4.167vw;
   }
   .info {
     flex: 1;
     p {
-      font-size: 14px;
+      font-size: 3.889vw;
       color: #888;
     }
     .title {
-      font-size: 16px;
+      font-size: 4.444vw;
       color: #333;
-      margin-bottom: 4px;
+      margin-bottom: 1.111vw;
     }
   }
   button {
-    height: 30px;
-    padding: 0px 10px;
-    border-radius: 15px;
+    height: 8.333vw;
+    padding: 0vw 2.778vw;
+    border-radius: 4.167vw;
     border: none;
-    font-size: 14px;
+    font-size: 3.889vw;
     color: #888;
   }
   .redBtn {
-    height: 30px;
-    padding: 0px 10px;
-    border-radius: 15px;
+    height: 8.333vw;
+    padding: 0vw 2.778vw;
+    border-radius: 4.167vw;
     border: none;
-    font-size: 14px;
+    font-size: 3.889vw;
     color: #fff;
     background-color: red;
   }
