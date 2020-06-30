@@ -40,7 +40,8 @@ export default {
             pageIndex: 1,
             pageSize: 5,
             finished: false,
-            loading: false
+            loading: false,
+            getSize: 0
           };
         });
         this.getCategory();
@@ -59,18 +60,21 @@ export default {
         }
       }).then(res => {
         const { data } = res.data;
+        item.getSize = data.length;
         item.category = [...item.category, ...data];
+        console.log(item.getSize);
         console.log(item.category);
       });
     },
 
     loadMore() {
       const item = this.header[this.current];
-      item.pageIndex += 1;
-      this.getCategory();
-      if (item.category.length <= item.pageSize) {
+      if (item.getSize == 0) {
         item.finished = true;
       }
+      item.pageIndex += 1;
+      this.getCategory();
+      item.loading = false;
     },
 
     getId() {
