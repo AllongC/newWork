@@ -9,6 +9,7 @@ import Register from '@/views/Register'
 import Center from '@/views/personal/Center'
 import Edit from '@/views/personal/Edit'
 import Focus from '@/views/personal/Focus'
+import Collect from '@/views/personal/Collect'
 
 import Test from '@/views/personal/Test'
 
@@ -57,7 +58,14 @@ const routes = [
       auth: true
     }
   },
-
+  {
+    path: '/collect',
+    name: 'Collect',
+    component: Collect,
+    meta: {
+      auth: true
+    }
+  },
 
   {
     path: '/test',
