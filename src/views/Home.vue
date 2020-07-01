@@ -62,8 +62,6 @@ export default {
         const { data } = res.data;
         item.getSize = data.length;
         item.category = [...item.category, ...data];
-        console.log(item.getSize);
-        console.log(item.category);
       });
     },
 

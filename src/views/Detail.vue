@@ -35,14 +35,20 @@
         <span class="iconfont iconweixin"></span>微信
       </p>
     </div>
+    <div class="comment" v-if="commentList.length">
+      <index :comment="item" v-for="item in commentList" :key="item.id" />
+    </div>
+    <div v-else class="noComment">快来抢沙发...</div>
   </div>
 </template>
 
 <script>
+import index from "@/views/comment/index";
 export default {
   data() {
     return {
-      post: []
+      post: [],
+      commentList: []
     };
   },
   methods: {
@@ -82,8 +88,20 @@ export default {
     }).then(res => {
       const { data } = res.data;
       this.post = data;
-      console.log(this.post);
     });
+    this.$axios({
+      url: "/post_comment/" + this.$route.params.id,
+      method: "get"
+    }).then(res => {
+      const { data } = res.data;
+      if (data.length >= 3) {
+        data.length = 3;
+      }
+      this.commentList = data;
+    });
+  },
+  components: {
+    index
   }
 };
 </script>
@@ -200,5 +218,11 @@ export default {
     font-weight: bold;
     padding: 0px 10px;
   }
+}
+.noComment {
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  color: #999;
 }
 </style>

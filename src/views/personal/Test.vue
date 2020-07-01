@@ -1,27 +1,28 @@
 <template>
   <div>
-    <button @click="add(1)">用户1</button>
-    <button @click="add(2)">用户2</button>
-    <button @click="add(3)">用户3</button>
-    <button @click="add(4)">用户4</button>
-    <button @click="add(5)">用户5</button>
-    <button @click="add(6)">用户6</button>
-    <button @click="add(7)">用户7</button>
-    <button @click="add(8)">用户8</button>
-    <button @click="add(9)">用户9</button>
+    <index :comment="item" v-for="item in commentList" :key="item.id" />
   </div>
 </template>
 
 <script>
+import index from "@/views/comment/index";
 export default {
-  methods: {
-    add(id) {
-      this.$axios({
-        url: "/user_follows/" + id
-      }).then(res => {
-        console.log(res);
-      });
-    }
+  data() {
+    return {
+      commentList: []
+    };
+  },
+  mounted() {
+    this.$axios({
+      url: "/post_comment/1",
+      method: "get"
+    }).then(res => {
+      const { data } = res.data;
+      this.commentList = data;
+    });
+  },
+  components: {
+    index
   }
 };
 </script>
