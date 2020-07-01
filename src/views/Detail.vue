@@ -39,6 +39,9 @@
       <index :comment="item" v-for="item in commentList" :key="item.id" />
     </div>
     <div v-else class="noComment">快来抢沙发...</div>
+    <div class="more">
+      <button @click="$router.push('/more/'+$route.params.id)">更多跟贴</button>
+    </div>
   </div>
 </template>
 
@@ -111,16 +114,16 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 14px 10px;
+  padding: 3.889vw 2.778vw;
   .iconnew {
-    font-size: 54px;
+    font-size: 15vw;
     flex: 1;
-    margin-left: 6px;
+    margin-left: 1.667vw;
   }
   button {
     text-align: center;
-    height: 26px;
-    padding: 0px 14px;
+    height: 7.222vw;
+    padding: 0vw 3.889vw;
     border: 1px solid #888;
     border-radius: 14px;
     font-size: 12px;
@@ -132,14 +135,14 @@ export default {
   }
 }
 .normal {
-  padding: 0px 10px;
+  padding: 0vw 2.778vw;
   .title {
-    font-size: 18px;
+    font-size: 5vw;
     font-weight: bold;
   }
   p {
-    margin: 14px 0px;
-    font-size: 14px;
+    margin: 3.889vw 0vw;
+    font-size: 3.889vw;
     color: #999;
   }
   /deep/ .content {
@@ -147,8 +150,8 @@ export default {
       width: 100%;
     }
     p {
-      font-size: 14px;
-      line-height: 24px;
+      font-size: 3.889vw;
+      line-height: 6.667vw;
       color: #333;
     }
   }
@@ -156,26 +159,26 @@ export default {
 .DetailBottom {
   display: flex;
   justify-content: space-around;
-  padding: 24px 10px;
+  padding: 6.667vw 2.778vw;
   border-bottom: 2px solid #e4e4e4;
   p {
     text-align: center;
-    line-height: 26px;
-    height: 26px;
-    padding: 0px 14px;
+    line-height: 7.222vw;
+    height: 7.222vw;
+    padding: 0vw 3.889vw;
     border: 1px solid #888;
-    border-radius: 14px;
-    font-size: 12px;
+    border-radius: 3.889vw;
+    font-size: 3.333vw;
   }
   .dianzan {
     border: 1px solid red;
     color: red;
   }
   .icondianzan {
-    margin-right: 4px;
+    margin-right: 1.111vw;
   }
   .iconweixin {
-    margin-right: 4px;
+    margin-right: 1.111vw;
     color: #1dcd1d;
   }
 }
@@ -184,28 +187,28 @@ export default {
     width: 100%;
   }
   .userInfo {
-    padding: 24px 10px;
+    padding: 6.667vw 2.778vw;
     display: flex;
     align-items: center;
     img {
-      width: 24px;
-      height: 24px;
+      width: 6.667vw;
+      height: 6.667vw;
       border-radius: 50%;
     }
     p {
-      margin-left: 8px;
+      margin-left: 2.222vw;
       flex: 1;
-      font-size: 14px;
+      font-size: 3.889vw;
       color: #888;
     }
 
     button {
       text-align: center;
-      height: 26px;
-      padding: 0px 14px;
+      height: 7.222vw;
+      padding: 0vw 3.889vw;
       border: 1px solid #888;
-      border-radius: 14px;
-      font-size: 12px;
+      border-radius: 3.889vw;
+      font-size: 3.333vw;
     }
     .redBtn {
       border: 1px solid red;
@@ -214,15 +217,31 @@ export default {
     }
   }
   .title {
-    font-size: 18px;
+    font-size: 5vw;
     font-weight: bold;
-    padding: 0px 10px;
+    padding: 0vw 2.778vw;
   }
 }
 .noComment {
-  height: 200px;
-  line-height: 200px;
+  height: 55.556vw;
+  line-height: 55.556vw;
   text-align: center;
   color: #999;
+}
+.more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30.556vw;
+  button {
+    height: 11.111vw;
+    line-height: 11.111vw;
+    border: none;
+    padding: 0vw 11.111vw;
+    border-radius: 5.556vw;
+    border: 1px solid #666;
+    font-size: 3.889vw;
+    color: #666;
+  }
 }
 </style>

@@ -1,11 +1,12 @@
 <template>
-  <div class="outer">
+  <div class="outers">
     <parent v-if="comment.parent" :comment="comment.parent" />
     <div class="total">
       <div class="user">
-        <img src="@/assets/logo.jpg" alt />
+        <img v-if="comment.user.head_img" :src="$axios.defaults.baseURL+comment.user.head_img" alt />
+        <img c-else src="@/assets/logo.jpg" alt />
         <div class="info">
-          <div class="title">火星网页1</div>
+          <div class="title">{{comment.user.nickname}}</div>
           <div class="time">2小时前</div>
         </div>
         <div class="replace">回复</div>
@@ -23,16 +24,16 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.outer {
+.outers {
   border-bottom: none;
   .total {
-    padding: 10px;
+    padding: 2.778vw;
     border: 1px solid #e4e4e4;
   }
   p {
-    font-size: 16px;
+    font-size: 4.444vw;
     color: #333;
-    margin: 10px 0px 10px 40px;
+    margin: 2.778vw 0vw 2.778vw 11.111vw;
   }
 }
 .user {
@@ -40,24 +41,24 @@ export default {
   justify-content: center;
   align-items: center;
   img {
-    width: 34px;
-    height: 34px;
+    width: 9.444vw;
+    height: 9.444vw;
     border-radius: 50%;
-    margin-right: 8px;
+    margin-right: 2.222vw;
   }
   .info {
     flex: 1;
     .title {
-      font-size: 14px;
+      font-size: 3.889vw;
       color: #333;
     }
     .time {
-      font-size: 12px;
+      font-size: 3.333vw;
       color: #999;
     }
   }
   .replace {
-    font-size: 14px;
+    font-size: 3.889vw;
     color: #999;
   }
 }

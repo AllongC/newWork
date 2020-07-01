@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
 import Detail from '@/views/Detail'
+import More from '@/views/More'
 
 import Login from '@/views/Login'
 import Register from '@/views/Register'
@@ -26,6 +27,11 @@ const routes = [
     path: '/detail/:id',
     name: 'Detail',
     component: Detail
+  },
+  {
+    path: '/more/:id',
+    name: 'More',
+    component: More
   },
 
   {
