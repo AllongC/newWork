@@ -1,13 +1,19 @@
 <template>
   <div>
     <div class="display" v-if="isShow">
-      <input type="text" @focus="onFocus" v-model="content" />
+      <input type="text" @focus="onFocus" v-model="content" :placeholder="defaultText" />
       <span class="iconfont iconpinglun-"></span>
       <span class="iconfont iconshoucang"></span>
       <span class="iconfont iconfenxiang"></span>
     </div>
     <div class="hidden" v-if="!isShow">
-      <textarea rows="3" @blur="unFocus" ref="textarea" v-model="content"></textarea>
+      <textarea
+        rows="3"
+        @blur="unFocus"
+        ref="textarea"
+        v-model="content"
+        :placeholder="defaultText"
+      ></textarea>
       <p @click="sendContent">发送</p>
     </div>
   </div>
@@ -21,6 +27,15 @@ export default {
       isShow: true,
       content: ""
     };
+  },
+  computed: {
+    defaultText() {
+      if (this.contentInfo.user) {
+        return "回复：@" + this.contentInfo.user;
+      } else {
+        return "写跟帖";
+      }
+    }
   },
   methods: {
     onFocus() {

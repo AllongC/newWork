@@ -1,6 +1,6 @@
 <template>
   <div class="outers">
-    <parent v-if="comment.parent" :comment="comment.parent" />
+    <parent v-if="comment.parent" :comment="comment.parent" @ParentId="getParentId" />
     <div class="total">
       <div class="user">
         <img v-if="comment.user.head_img" :src="$axios.defaults.baseURL+comment.user.head_img" alt />
@@ -9,7 +9,7 @@
           <div class="title">{{comment.user.nickname}}</div>
           <div class="time">2小时前</div>
         </div>
-        <div class="replace">回复</div>
+        <div class="replace" @click="sendParentId">回复</div>
       </div>
       <p>评论：{{comment.content}}</p>
     </div>
@@ -19,7 +19,18 @@
 <script>
 export default {
   props: ["comment"],
-  name: "parent"
+  name: "parent",
+  methods: {
+    sendParentId() {
+      this.$emit("ParentId", {
+        parent_id: this.comment.id,
+        user: this.comment.user.nickname
+      });
+    },
+    getParentId(contentInfo) {
+      this.$emit("ParentId", contentInfo);
+    }
+  }
 };
 </script>
 

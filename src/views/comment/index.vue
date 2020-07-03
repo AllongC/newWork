@@ -9,7 +9,7 @@
       </div>
       <div class="replace" @click="replace">回复</div>
     </div>
-    <parent v-if="comment.parent" :comment="comment.parent" />
+    <parent v-if="comment.parent" :comment="comment.parent" @ParentId="getParentId" />
     <p>评论：{{comment.content}}</p>
   </div>
 </template>
@@ -27,6 +27,9 @@ export default {
         parent_id: this.comment.id,
         user: this.comment.user.nickname
       });
+    },
+    getParentId(contentInfo) {
+      this.$emit("replace", contentInfo);
     }
   }
 };
