@@ -36,13 +36,13 @@
       </p>
     </div>
     <div class="comment" v-if="commentList.length">
-      <index :comment="item" v-for="item in commentList" :key="item.id" />
+      <index :comment="item" v-for="item in commentList" :key="item.id" @replace="accept" />
     </div>
     <div v-else class="noComment">快来抢沙发...</div>
     <div class="more">
       <button @click="$router.push('/more/'+$route.params.id)">更多跟贴</button>
     </div>
-    <CommentInput @reload="load" />
+    <CommentInput @reload="load" :contentInfo="contentInfo" ref="CommentInput" />
   </div>
 </template>
 
@@ -53,7 +53,8 @@ export default {
   data() {
     return {
       post: [],
-      commentList: []
+      commentList: [],
+      contentInfo: {}
     };
   },
   methods: {
@@ -97,6 +98,10 @@ export default {
         }
         this.commentList = data;
       });
+    },
+    accept(info) {
+      this.contentInfo = info;
+      this.$refs.CommentInput.onFocus();
     }
   },
   mounted() {

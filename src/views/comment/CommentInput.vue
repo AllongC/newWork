@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  props: ["contentInfo"],
   data() {
     return {
       isShow: true,
@@ -37,6 +38,9 @@ export default {
       const data = {
         content: this.content
       };
+      if (this.contentInfo.parent_id) {
+        data.parent_id = this.contentInfo.parent_id;
+      }
       this.$axios({
         url: "/post_comment/" + this.$route.params.id,
         method: "post",

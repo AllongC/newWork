@@ -7,7 +7,7 @@
         <div class="title">{{comment.user.nickname}}</div>
         <div class="time">2小时前</div>
       </div>
-      <div class="replace">回复</div>
+      <div class="replace" @click="replace">回复</div>
     </div>
     <parent v-if="comment.parent" :comment="comment.parent" />
     <p>评论：{{comment.content}}</p>
@@ -20,6 +20,14 @@ export default {
   props: ["comment"],
   components: {
     parent
+  },
+  methods: {
+    replace() {
+      this.$emit("replace", {
+        parent_id: this.comment.id,
+        user: this.comment.user.nickname
+      });
+    }
   }
 };
 </script>
