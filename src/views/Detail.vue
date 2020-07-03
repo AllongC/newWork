@@ -42,11 +42,13 @@
     <div class="more">
       <button @click="$router.push('/more/'+$route.params.id)">更多跟贴</button>
     </div>
+    <CommentInput @reload="load" />
   </div>
 </template>
 
 <script>
 import index from "@/views/comment/index";
+import CommentInput from "@/views/comment/CommentInput";
 export default {
   data() {
     return {
@@ -83,6 +85,18 @@ export default {
           this.post.like_length -= 1;
         }
       });
+    },
+    load() {
+      this.$axios({
+        url: "/post_comment/" + this.$route.params.id,
+        method: "get"
+      }).then(res => {
+        const { data } = res.data;
+        if (data.length >= 3) {
+          data.length = 3;
+        }
+        this.commentList = data;
+      });
     }
   },
   mounted() {
@@ -92,19 +106,11 @@ export default {
       const { data } = res.data;
       this.post = data;
     });
-    this.$axios({
-      url: "/post_comment/" + this.$route.params.id,
-      method: "get"
-    }).then(res => {
-      const { data } = res.data;
-      if (data.length >= 3) {
-        data.length = 3;
-      }
-      this.commentList = data;
-    });
+    this.load();
   },
   components: {
-    index
+    index,
+    CommentInput
   }
 };
 </script>
@@ -233,6 +239,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 30.556vw;
+  padding-bottom: 25vw;
   button {
     height: 11.111vw;
     line-height: 11.111vw;
