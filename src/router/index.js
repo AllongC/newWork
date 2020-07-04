@@ -14,6 +14,7 @@ import Edit from '@/views/personal/Edit'
 import Focus from '@/views/personal/Focus'
 import Collect from '@/views/personal/Collect'
 import MyComment from '@/views/personal/MyComment'
+import Column from '@/views/personal/Column'
 
 import Test from '@/views/personal/Test'
 
@@ -89,6 +90,14 @@ const routes = [
     path: '/mycomment',
     name: 'MyComment',
     component: MyComment,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/column',
+    name: 'Column',
+    component: Column,
     meta: {
       auth: true
     }
