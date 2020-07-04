@@ -4,7 +4,7 @@
     <div class="total">
       <div class="user">
         <img v-if="comment.user.head_img" :src="$axios.defaults.baseURL+comment.user.head_img" alt />
-        <img c-else src="@/assets/logo.jpg" alt />
+        <img v-else src="@/assets/logo.jpg" alt />
         <div class="info">
           <div class="title">{{comment.user.nickname}}</div>
           <div class="time">2小时前</div>
