@@ -16,7 +16,7 @@
       </p>
     </div>
     <UserList MyFocus="我的关注" FocusInfo="关注的用户" @ToDirection="$router.push('/focus')" />
-    <UserList MyFocus="我的跟帖" FocusInfo="跟帖/回复" @ToDirection="direction('MyPost')" />
+    <UserList MyFocus="我的跟帖" FocusInfo="跟帖/回复" @ToDirection="$router.push('/mycomment')" />
     <UserList MyFocus="我的收藏" FocusInfo="文章/视频" @ToDirection="$router.push('/collect')" />
     <UserList MyFocus="设置" FocusInfo @ToDirection="direction('MySet')" />
     <UserList MyFocus="退出" FocusInfo @ToDirection="direction('quit')" />

@@ -13,6 +13,7 @@ import Center from '@/views/personal/Center'
 import Edit from '@/views/personal/Edit'
 import Focus from '@/views/personal/Focus'
 import Collect from '@/views/personal/Collect'
+import MyComment from '@/views/personal/MyComment'
 
 import Test from '@/views/personal/Test'
 
@@ -80,6 +81,14 @@ const routes = [
     path: '/collect',
     name: 'Collect',
     component: Collect,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/mycomment',
+    name: 'MyComment',
+    component: MyComment,
     meta: {
       auth: true
     }
