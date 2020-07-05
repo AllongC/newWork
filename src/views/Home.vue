@@ -29,6 +29,23 @@ export default {
   },
   methods: {
     update() {
+      const column = localStorage.getItem("delColumn");
+      if (column) {
+        const data = JSON.parse(column);
+        this.header = data.map(item => {
+          return {
+            ...item,
+            category: [],
+            pageIndex: 1,
+            pageSize: 5,
+            finished: false,
+            loading: false,
+            getSize: 0
+          };
+        });
+        this.getCategory();
+        return;
+      }
       this.$axios({
         url: "/category"
       }).then(res => {

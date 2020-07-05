@@ -38,7 +38,20 @@ export default {
       delColumn: []
     };
   },
+  watch: {
+    addColumn() {
+      localStorage.setItem("addColumn", JSON.stringify(this.addColumn));
+      localStorage.setItem("delColumn", JSON.stringify(this.delColumn));
+    }
+  },
   mounted() {
+    const localAddColumn = localStorage.getItem("addColumn");
+    const localDelColumn = localStorage.getItem("delColumn");
+    if (localAddColumn || localDelColumn) {
+      this.addColumn = JSON.parse(localAddColumn);
+      this.delColumn = JSON.parse(localDelColumn);
+      return;
+    }
     this.$axios({
       url: "/category",
       method: "get"

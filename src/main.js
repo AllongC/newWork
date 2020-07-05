@@ -15,7 +15,7 @@ axios.interceptors.request.use(config => {
 })
 axios.interceptors.response.use(res => {
   const { statusCode, message } = res.data
-  if (statusCode && statusCode == 401) {
+  if (message == "用户信息验证失败") {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     Toast.fail(message)
